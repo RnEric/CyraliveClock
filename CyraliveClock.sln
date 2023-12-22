@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CyraliveClock", "CyraliveClock\CyraliveClock.csproj", "{5C5EEF62-2A7E-49E0-880F-0DF43725DB19}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C5EEF62-2A7E-49E0-880F-0DF43725DB19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C5EEF62-2A7E-49E0-880F-0DF43725DB19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C5EEF62-2A7E-49E0-880F-0DF43725DB19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C5EEF62-2A7E-49E0-880F-0DF43725DB19}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {2728892F-ADD4-4A8E-90D2-FC3B5C4AC41C}
+	EndGlobalSection
+EndGlobal

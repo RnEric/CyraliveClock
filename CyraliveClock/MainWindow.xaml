@@ -1,0 +1,74 @@
+﻿<Window x:Class="CyraliveClock.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CyraliveClock"
+        mc:Ignorable="d"
+        Title="CyraliveClock" Height="130" Width="130" WindowStyle="None" AllowsTransparency="True" Background="#01FFFFFF" MouseLeftButtonDown="Window_MouseLeftButtonDown" ShowInTaskbar="False" Topmost="True" LocationChanged="Window_LocationChanged" SizeChanged="Window_SizeChanged">
+    <WindowChrome.WindowChrome>
+        <WindowChrome/>
+    </WindowChrome.WindowChrome>
+    <Grid>
+        <Grid.Effect>
+            <DropShadowEffect ShadowDepth="1" Direction="330" Color="Black" Opacity="0.5" BlurRadius="2"/>
+        </Grid.Effect>
+        <Grid.ContextMenu>
+            <ContextMenu x:Name="CCmenu" StaysOpen="False">
+                <MenuItem x:Name="CCsettings" Header="设置" Click="CCsettings_Click"/>
+                <Separator/>
+                <MenuItem x:Name="CCclose" Header="关闭" Click="CCclose_Click"/>
+            </ContextMenu>
+        </Grid.ContextMenu>
+        <Grid x:Name="Cierra_analog_clock">
+            <Ellipse Height="111.5" Width="111.5" Fill="Silver"/>
+            <Ellipse Height="109" Width="109">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="/pattern_silver.png"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Ellipse Height="102" Width="102" Fill="Silver"/>
+            <Ellipse Height="100" Width="100" Fill="#0F52BA"/>
+            <Ellipse Height="50" Width="50" Fill="Silver"/>
+            <Ellipse Height="49" Width="49">
+                <Ellipse.Fill>
+                    <ImageBrush ImageSource="/pattern_cyan.png"/>
+                </Ellipse.Fill>
+            </Ellipse>
+            <Ellipse Height="10" Width="10" Fill="White"/>
+            <TextBlock Margin="0,20,0,0" TextWrapping="Wrap" Text="XII" VerticalAlignment="Top" FontWeight="Bold" FontFamily="Times New Roman" Foreground="White" HorizontalAlignment="Center"/>
+            <TextBlock x:Name="Cierra_clock_sun_moon" HorizontalAlignment="Center" Margin="0,0,0,20" TextWrapping="Wrap" Text="☀" VerticalAlignment="Bottom" FontWeight="Bold" Foreground="White" FontFamily="Segoe UI Symbol"/>
+            <Border BorderThickness="1" BorderBrush="Silver" Margin="20,0,0,0" VerticalAlignment="Center" HorizontalAlignment="Left">
+                <TextBlock x:Name="Cierra_clock_week" Background="White" HorizontalAlignment="Left" TextWrapping="Wrap" Width="30" Height="11" VerticalAlignment="Top" FontSize="10" TextAlignment="Center" FontFamily="Arial Black"/>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Silver" VerticalAlignment="Top" HorizontalAlignment="Center" Margin="0,35,0,0" Width="23" Height="13">
+                <TextBlock x:Name="Cierra_clock_day" Background="White" TextAlignment="Center" FontFamily="Arial Black" FontSize="10"/>
+            </Border>
+            <Border BorderThickness="1" BorderBrush="Silver" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,0,20,0" >
+                <TextBlock HorizontalAlignment="Left" x:Name="Cierra_clock_month" TextWrapping="Wrap" Background="White" FontSize="10" Width="30" Height="11" VerticalAlignment="Top" TextAlignment="Center" FontFamily="Arial Black"/>
+            </Border>
+            <Rectangle Height="45" Width="2" Fill="White" Margin="0,45,0,0">
+                <Rectangle.RenderTransform>
+                    <RotateTransform x:Name="secondHand" Angle="0" />
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Rectangle Height="35" Width="2" Fill="White" Margin="0,35,0,0">
+                <Rectangle.RenderTransform>
+                    <RotateTransform x:Name="minuteHand" Angle="0" />
+                </Rectangle.RenderTransform>
+            </Rectangle>
+            <Rectangle Height="30" Width="2" Fill="White" Margin="0,30,0,0">
+                <Rectangle.RenderTransform>
+                    <RotateTransform x:Name="hourHand" Angle="0" />
+                </Rectangle.RenderTransform>
+            </Rectangle>
+        </Grid>
+        <Grid x:Name="Cierra_digital_clock" Visibility="Hidden" Background="Black">
+            <TextBlock x:Name="Cierra_digital_clock_time" Foreground="#57f3ff" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="./#Digital-7" FontWeight="Bold" FontSize="48">
+                <TextBlock.Effect>
+                    <DropShadowEffect ShadowDepth="0" Color="#57f3ff" Opacity="0.7" BlurRadius="15"/>
+                </TextBlock.Effect>
+            </TextBlock>
+        </Grid>
+    </Grid>
+</Window>
