@@ -1,5 +1,9 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Text;
+using System.Text.Json.Nodes;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -7,44 +11,25 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Timers;
 using System.Windows.Threading;
 using Timer = System.Timers.Timer;
-using System.IO;
-using System.Text.Json.Nodes;
-using System.Text.Json;
 using static CyraliveClock.GlobalFunction;
+using System.IO;
 using System.Text.RegularExpressions;
 
 namespace CyraliveClock
 {
     /// <summary>
-    /// Interaction logic for MainWindow.xaml
+    /// Cierra_digital_clock.xaml 的交互逻辑
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class Cierra_digital_clock : Window
     {
-        public MainWindow()
+        public Cierra_digital_clock()
         {
             InitializeComponent();
-            if (!File.Exists("CyraliveClock.json"))
-            {
-                JsonObject CSconfig = new JsonObject
-                {
-                    { "Clock", 0 },
-                    { "Topmost", true },
-                    { "Taskbar", false },
-                    { "TransparentWindow", false },
-                    { "WindowSize", 0 },
-                    { "WindowXY", "" }
-                };
-                StreamWriter streamWriter = File.CreateText("CyraliveClock.json");
-                streamWriter.WriteLine(JsonSerializer.Serialize(CSconfig, new JsonSerializerOptions { WriteIndented = true }));
-                streamWriter.Close();
-            }
-            getCyraliveConfig = JsonNode.Parse(File.ReadAllText("CyraliveClock.json"));
             setCierraclockDate();
+            getCyraliveConfig = JsonNode.Parse(File.ReadAllText("CyraliveClock.json"));
             WindowStartupLocation = WindowStartupLocation.Manual;
             if (getCyraliveConfig["WindowXY"].ToString() != "")
             {
@@ -58,16 +43,10 @@ namespace CyraliveClock
                 Left = SystemParameters.PrimaryScreenWidth - Width - SystemParameters.PrimaryScreenWidth * 0.05;
                 Top = SystemParameters.PrimaryScreenHeight - Height - SystemParameters.PrimaryScreenHeight * 0.15;
             }
-            if ((int)getCyraliveConfig["Clock"] != 0)
-            {
-                Application.Current.MainWindow = new Cierra_digital_clock();
-                Application.Current.MainWindow.Show();
-                Close();
-            }
             if ((double)getCyraliveConfig["WindowSize"] != 0)
             {
                 Height = (double)getCyraliveConfig["WindowSize"];
-                Width = (double)getCyraliveConfig["WindowSize"];
+                Width = (double)getCyraliveConfig["WindowSize"] * 3.4;
             }
             if (!(bool)getCyraliveConfig["Topmost"])
             {
@@ -94,16 +73,12 @@ namespace CyraliveClock
 
         void setCierraclockDate()
         {
-            secondHand.Angle = DateTime.Now.Second * 6 + 180;
-            minuteHand.Angle = DateTime.Now.Minute * 6 + 180;
-            hourHand.Angle = (DateTime.Now.Hour * 30) + (DateTime.Now.Minute * 0.5) + 180;
-            Cierra_clock_day.Text = DateTime.Now.Day.ToString();
-            Cierra_clock_week.Text = DateTime.Now.ToString("ddd", CultureInfo.CreateSpecificCulture("en_US")).ToUpper();
-            Cierra_clock_month.Text = DateTime.Now.ToString("MMM", CultureInfo.CreateSpecificCulture("en_US")).ToUpper();
-            if (DateTime.Now.Hour > 17)
-            {
-                Cierra_clock_sun_moon.Text = "☽";
-            }
+            Cierra_digital_clock_time.Text = DateTime.Now.ToString("T");
+        }
+
+        private void CCsettings_Click(object sender, RoutedEventArgs e)
+        {
+            new CyraliveClocksettings().Show();
         }
 
         private void CCclose_Click(object sender, RoutedEventArgs e)
@@ -112,11 +87,6 @@ namespace CyraliveClock
             {
                 window.Close();
             }
-        }
-
-        private void CCsettings_Click(object sender, RoutedEventArgs e)
-        {
-            new CyraliveClocksettings().Show();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -159,15 +129,15 @@ namespace CyraliveClock
                     if (!stylechange)
                     {
                         Height = Height * 1;
-                        Width = Height * 1;
+                        Width = Height * 3.4;
                         if (WindowState == WindowState.Maximized)
                         {
                             WindowState = WindowState.Normal;
                         }
-                        else if (Height > 450 || Width > 450)
+                        else if (Height > 150 || Width > 510)
                         {
-                            Height = 130;
-                            Width = 130;
+                            Height = 50;
+                            Width = 170;
                         }
                         if (Convert.ToDouble(read_config_file("WindowSize")) != 0)
                         {

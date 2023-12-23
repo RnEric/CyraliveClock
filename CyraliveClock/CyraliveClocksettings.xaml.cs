@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Reflection;
@@ -85,27 +86,11 @@ namespace CyraliveClock
             stylechange = true;
             write_config_file("Clock", CC_style.SelectedIndex);
             CC_size.IsChecked = false;
-            foreach (Window window in Application.Current.Windows)
-            {
-                if (window.GetType() == typeof(MainWindow))
-                {
-                    if (CC_style.SelectedIndex != 0)
-                    {
-                        window.Height = 50;
-                        window.Width = 170;
-                        (window as MainWindow).Cierra_analog_clock.Visibility = Visibility.Hidden;
-                        (window as MainWindow).Cierra_digital_clock.Visibility = Visibility.Visible;
-                    }
-                    else
-                    {
-                        window.Height = 130;
-                        window.Width = 130;
-                        (window as MainWindow).Cierra_analog_clock.Visibility = Visibility.Visible;
-                        (window as MainWindow).Cierra_digital_clock.Visibility = Visibility.Hidden;
-                    }
-                    write_config_file("WindowSize", 0);
-                }
-            }
+            write_config_file("WindowSize", 0);
+            Application.Current.Shutdown();
+            Process process = new Process();
+            process.StartInfo.FileName = Assembly.GetExecutingAssembly().GetName().Name + ".exe";
+            process.Start();
         }
 
         private void CC_position_Click(object sender, RoutedEventArgs e)

@@ -1,0 +1,30 @@
+﻿<Window x:Class="CyraliveClock.Cierra_digital_clock"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CyraliveClock"
+        mc:Ignorable="d"
+        Title="Cierra_digital_clock" Height="50" Width="170" WindowStyle="None"  AllowsTransparency="True" Background="#01FFFFFF" Topmost="True" ShowInTaskbar="False" MouseLeftButtonDown="Window_MouseLeftButtonDown" LocationChanged="Window_LocationChanged" SizeChanged="Window_SizeChanged">
+    <WindowChrome.WindowChrome>
+        <WindowChrome/>
+    </WindowChrome.WindowChrome>
+    <Viewbox Stretch="UniformToFill">
+        <Grid Height="50" Width="170">
+            <Grid.ContextMenu>
+                <ContextMenu x:Name="CCmenu" StaysOpen="False">
+                    <MenuItem x:Name="CCsettings" Header="设置" Click="CCsettings_Click"/>
+                    <Separator/>
+                    <MenuItem x:Name="CCclose" Header="关闭" Click="CCclose_Click"/>
+                </ContextMenu>
+            </Grid.ContextMenu>
+            <Grid x:Name="Cierra_digi_clock" Background="Black">
+                <TextBlock x:Name="Cierra_digital_clock_time" Foreground="#57f3ff" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="./#Digital-7" FontWeight="Bold" FontSize="48">
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="0" Color="#57f3ff" Opacity="0.7" BlurRadius="15"/>
+                    </TextBlock.Effect>
+                </TextBlock>
+            </Grid>
+        </Grid>
+    </Viewbox>
+</Window>
