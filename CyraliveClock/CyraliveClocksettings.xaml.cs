@@ -33,31 +33,56 @@ namespace CyraliveClock
             ver_info.Text = "版本" + Assembly.GetExecutingAssembly().GetName().Version.ToString();
             getCyraliveConfig = JsonNode.Parse(File.ReadAllText("CyraliveClock.json"));
             WindowStartupLocation = WindowStartupLocation.Manual;
-            foreach (Window window in Application.Current.Windows)
-            {
-                if (window.GetType() == typeof(MainWindow))
-                {
-                    if (window.Left <= SystemParameters.PrimaryScreenWidth / 2)
-                    {
-                        Left = window.Left + window.Width + 5;
-                    }
-                    else
-                    {
-                        Left = window.Left - Width - 5;
-                    }
-                    if (window.Top <= SystemParameters.PrimaryScreenHeight / 2)
-                    {
-                        Top = window.Top;
-                    }
-                    else
-                    {
-                        Top = window.Top + window.Height - Height;
-                    }
-                }
-            }
             if ((int)getCyraliveConfig["Clock"] != 0)
             {
                 CC_style.SelectedIndex = (int)getCyraliveConfig["Clock"];
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window.GetType() == typeof(Cierra_digital_clock))
+                    {
+                        if (window.Left <= SystemParameters.PrimaryScreenWidth / 2)
+                        {
+                            Left = window.Left + window.Width + 5;
+                        }
+                        else
+                        {
+                            Left = window.Left - Width - 5;
+                        }
+                        if (window.Top <= SystemParameters.PrimaryScreenHeight / 2)
+                        {
+                            Top = window.Top;
+                        }
+                        else
+                        {
+                            Top = window.Top + window.Height - Height;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                foreach (Window window in Application.Current.Windows)
+                {
+                    if (window.GetType() == typeof(MainWindow))
+                    {
+                        if (window.Left <= SystemParameters.PrimaryScreenWidth / 2)
+                        {
+                            Left = window.Left + window.Width + 5;
+                        }
+                        else
+                        {
+                            Left = window.Left - Width - 5;
+                        }
+                        if (window.Top <= SystemParameters.PrimaryScreenHeight / 2)
+                        {
+                            Top = window.Top;
+                        }
+                        else
+                        {
+                            Top = window.Top + window.Height - Height;
+                        }
+                    }
+                }
             }
             if (getCyraliveConfig["WindowXY"].ToString() != "")
             {
